@@ -1,19 +1,25 @@
 import { BinaryTree } from "./binary-tree.js";
+import { DrawingTree } from "./drawing-tree.js";
 const c = document.getElementById("canvas_binary-three");
 const ctx = c.getContext("2d");
 c.width = window.innerWidth;
 c.height = window.innerHeight * 2;
-const bt = new BinaryTree(ctx);
+const bt = new BinaryTree();
+const dt = new DrawingTree(ctx, bt, c.width, c.height);
 const btn = document.getElementById("btnNumber");
 const del = document.getElementById("btnDel");
 const search = document.getElementById("btnSearch");
 const clickBtn = function () {
     const value = parseInt(document.getElementById("number").value, 10);
     bt.add(window.innerWidth / 2, 20, 15, value);
+    dt.updateTree(bt);
+    dt.draw();
 };
 const clickDel = function () {
     const value = parseInt(document.getElementById("del").value, 10);
     bt.delete(value);
+    dt.updateTree(bt);
+    dt.draw();
 };
 const clickSearch = function () {
     const value = parseInt(document.getElementById("search").value, 10);
